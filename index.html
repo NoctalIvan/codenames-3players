@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+    .blue {
+      background: #0077d5
+    }
+    .red {
+      background: #ff66ad;
+    }
+    .green {
+      background: #0ac912
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-main style="margin-top: 50px; margin-left: 100px;">
+        <div style="width: 100%">
+          <img src="./logo.jpg" style="width: 500px; display: inline-block; margin-bottom: 130px"/>
+          <div style="margin: 2px;width: 550px; margin: auto 50px; display: inline-block;">
+            <div style="display:inline-block; width: 100px; height: 100px; margin: 5px" :class="item.color" v-for="item in items"></div>
+          </div>
+        </div>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/shuffle-array"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() {
+        return {
+          items: []
+        }
+      },
+      mounted() {
+        const arr = shuffle([
+          ...'aaaaaaaa'.split('').map(a => ({color: 'blue'})),
+          ...'aaaaaaaa'.split('').map(a => ({color: 'red'})),
+          ...'aaaaaaaa'.split('').map(a => ({color: 'green'})),
+          {color: 'black'}
+        ])
+
+        for(let i = 0; i < 25; i ++) {
+          this.items.push({color: arr[i].color})
+        }
+      }
+    })
+  </script>
+</body>
+</html>
+
